@@ -62,7 +62,7 @@ if ($DEBUG) then
     echo gcc --version == `gcc --version |head -1`
   endif
 endif
-if (( $CC1 == "gcc" ) && ( `gcc --version |head -1` =~ '* 4.*' )) then
+if (( $CC1 == "gcc" ) && ( `gcc --version |head -1| awk '{print $NF}' | cut -d. -f1` > 3 )) then
   #note: not all versions of sed have -i option so use .tmp file
   foreach f (`ls *.C`)
     echo uncommenting gcc4 stuff in $f
